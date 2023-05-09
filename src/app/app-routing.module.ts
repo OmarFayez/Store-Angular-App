@@ -14,6 +14,11 @@ const routes: Routes = [
         (m) => m.UsersFeatureModule
       ),
   },
+  {
+    path: 'store',
+    loadChildren: () =>
+      import('./layout/layout.module').then((m) => m.LayoutModule),
+  },
 ];
 
 @NgModule({
