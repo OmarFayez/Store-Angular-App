@@ -1,3 +1,48 @@
-<div>
-  <mat-card> Login Form </mat-card>
+<div class="d-flex justify-content-center align-items-center h-100">
+  <mat-card class="max-w-24 rounded-3">
+    <mat-card-content>
+      <h1 class="h4 mb-3">Login Form</h1>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill" class="w-100 mb-2">
+          <mat-label>UserName</mat-label>
+          <input matInput formControlName="userName" required />
+          <mat-error *ngIf="loginForm.get('userName')?.hasError('required')"
+            >Required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-100 mb-2">
+          <mat-label>Enter your password</mat-label>
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            formControlName="password"
+            required
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')"
+            >Required</mat-error
+          >
+        </mat-form-field>
+
+        <button
+          [disabled]="loginForm.invalid"
+          mat-raised-button
+          color="primary"
+          class="w-100"
+          type="submit"
+        >
+          Login
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>
