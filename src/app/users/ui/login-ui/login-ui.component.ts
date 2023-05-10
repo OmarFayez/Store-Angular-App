@@ -1,4 +1,9 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -11,6 +16,7 @@ import { LoginForm } from '../../utils/login-form.model';
   selector: 'app-login-ui',
   templateUrl: './login-ui.component.html',
   styleUrls: ['./login-ui.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginUiComponent {
   @Output() onLoginForm = new EventEmitter();

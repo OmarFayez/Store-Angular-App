@@ -23,7 +23,6 @@ export class SnackBarService {
     variant?: SnackBarVariant,
     duration = 10000
   ): void => {
-    debugger;
     this._snackBar.open(message, 'close', {
       direction: this._direction.direction,
       duration,
