@@ -19,6 +19,21 @@ const routes: Routes = [
     loadChildren: () =>
       import('./layout/layout.module').then((m) => m.LayoutModule),
   },
+  {
+    path: 'access-denied',
+    loadComponent: () =>
+      import('./core/pages/access-denied/access-denied.component').then(
+        (mod) => mod.AccessDeniedComponent
+      ),
+  },
+  {
+    path: 'not-found',
+    loadComponent: () =>
+      import('./core/pages/not-found/not-found.component').then(
+        (mod) => mod.NotFoundComponent
+      ),
+  },
+  { path: '**', redirectTo: 'not-found' },
 ];
 
 @NgModule({
