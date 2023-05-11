@@ -2,7 +2,7 @@
   <mat-card class="max-w-24 rounded-3">
     <mat-card-content>
       <h1 class="h4 mb-3">Login Form</h1>
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="loginForm">
         <mat-form-field appearance="fill" class="w-100 mb-2">
           <mat-label>UserName</mat-label>
           <input matInput formControlName="userName" required />
@@ -38,7 +38,7 @@
           mat-raised-button
           color="primary"
           class="w-100"
-          type="submit"
+          (click)="onSubmit()"
         >
           Login
         </button>

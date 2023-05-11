@@ -7,8 +7,5 @@ import { AuthService } from '../users/data-access/auth.service';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent {
-  constructor(private authService: AuthService) {}
-  public logOut() {
-    this.authService.logOut();
-  }
+  constructor() {}
 }

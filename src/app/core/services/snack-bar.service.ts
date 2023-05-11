@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BidirectionallyService } from './bidirectionally.service';
+import { TranslateService } from '@ngx-translate/core';
 export type SnackBarVariant = 'normal' | 'success' | 'error';
 
 @Injectable({
@@ -9,7 +10,8 @@ export type SnackBarVariant = 'normal' | 'success' | 'error';
 export class SnackBarService {
   constructor(
     private readonly _snackBar: MatSnackBar,
-    private readonly _direction: BidirectionallyService
+    private readonly _direction: BidirectionallyService,
+    private readonly _translate: TranslateService
   ) {}
   panelClass = (variant?: SnackBarVariant): string[] | undefined => {
     return variant === 'success'
@@ -23,7 +25,7 @@ export class SnackBarService {
     variant?: SnackBarVariant,
     duration = 10000
   ): void => {
-    this._snackBar.open(message, 'close', {
+    this._snackBar.open(message, this._translate.instant('close'), {
       direction: this._direction.direction,
       duration,
       panelClass: this.panelClass(variant),

@@ -12,7 +12,7 @@ export const userProductsGuard: CanActivateFn = (route, state) => {
     map((user) => {
       const isUser: boolean = !!user && user?.role === 'user';
 
-      !isUser && router.navigateByUrl('/access-denied');
+      if (!isUser) router.navigateByUrl('/access-denied');
 
       return isUser;
 

@@ -1,0 +1,35 @@
+<button mat-icon-button [matMenuTriggerFor]="languages" type="button">
+  <ng-container
+    *ngTemplateOutlet="flagImage; context: { $implicit: activatedLang }"
+  ></ng-container>
+</button>
+<!-- Language menu -->
+<mat-menu [xPosition]="'before'" #languages="matMenu">
+  <ng-container *ngFor="let lang of availableLangs">
+    <button mat-menu-item (click)="onSelectLang(lang)">
+      <span class="d-flex justify-content-center align-items-center gap-2">
+        <ng-container
+          *ngTemplateOutlet="flagImage; context: { $implicit: lang }"
+        ></ng-container>
+        <span>{{ lang?.title }}</span>
+      </span>
+    </button>
+  </ng-container>
+</mat-menu>
+
+<!-- Flag image template -->
+<ng-template #flagImage let-lang>
+  <span
+    class="d-flex justify-content-center align-items-center"
+    style="width: 30px"
+  >
+    <!-- <span
+      class="absolute inset-0 ring-1 ring-inset ring-black ring-opacity-10"
+    ></span> -->
+    <img
+      class="w-100"
+      [src]="'assets/images/flags/' + lang?.id + '.svg'"
+      [alt]="lang"
+    />
+  </span>
+</ng-template>

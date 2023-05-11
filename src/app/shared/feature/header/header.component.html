@@ -1,0 +1,53 @@
+<div class="top-header">
+  <mat-toolbar
+    color="primary"
+    class="d-flex justify-content-between align-items-center"
+  >
+    <!-- <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+    >
+      <mat-icon>menu</mat-icon>
+    </button> -->
+    <span>Store App</span>
+    <!-- <span class="example-spacer"></span>
+    <button
+      mat-icon-button
+      class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon"
+    >
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with share icon"
+    >
+      <mat-icon>share</mat-icon>
+    </button> -->
+    <div class="d-flex align-items-center">
+      <app-language class="mx-2"></app-language>
+      <ng-container *ngIf="user$ | async as user">
+        <button
+          mat-button
+          [matMenuTriggerFor]="menu"
+          class="md:text-base text-xs font-medium"
+        >
+          <span> {{ "welcome" | translate }} {{ user?.userName }} </span>
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button
+            mat-menu-item
+            (click)="logOut()"
+            class="flex justify-start items-center gap-2 px-23 md:text-base text-xs font-medium"
+          >
+            <span>{{ "logout" | translate }} </span>
+            <mat-icon>logout</mat-icon>
+          </button>
+        </mat-menu>
+      </ng-container>
+    </div>
+  </mat-toolbar>
+</div>

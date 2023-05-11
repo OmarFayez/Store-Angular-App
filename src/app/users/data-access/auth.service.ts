@@ -4,6 +4,7 @@ import { User } from '../utils/user.model';
 import { LoginResult } from '../utils/login-form.model';
 import { Router } from '@angular/router';
 import { EncodeDecodeService } from 'src/app/core/services/encode-decode.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,8 @@ import { EncodeDecodeService } from 'src/app/core/services/encode-decode.service
 export class AuthService {
   constructor(
     private router: Router,
-    private encodeDecodeService: EncodeDecodeService
+    private encodeDecodeService: EncodeDecodeService,
+    private readonly _translate: TranslateService
   ) {
     this.getCurrentUser();
   }
@@ -40,7 +42,7 @@ export class AuthService {
     const loginUser = this.userList.find(
       (existUser) =>
         existUser.userName === user.userName &&
-        existUser.userName === user.userName
+        existUser.password === user.password
     );
     if (loginUser) {
       this._currentUser.next(loginUser);
@@ -52,13 +54,13 @@ export class AuthService {
       localStorage.setItem('userRole', loginUser.role);
       return of({
         status: 200,
-        message: 'Login Success',
+        message: this._translate.instant('loginSuccess'),
         role: loginUser.role,
       });
     } else
       return of({
         status: 403,
-        message: 'Check user name or password..',
+        message: this._translate.instant('loginFailed'),
         role: '',
       });
   }
