@@ -1,0 +1,113 @@
+<app-dialog
+  [isLoading]="submitLoading"
+  [isValid]="addEditProductForm.valid"
+  [submitBtnText]="'save' | translate"
+  [title]="modalTitle"
+  titleIcon="edit_square"
+  [cancelBtnText]="'cancel' | translate"
+  (submitDialog)="onSubmit()"
+  (closeDialog)="cancelHandler()"
+  (cancelDialog)="cancelHandler()"
+>
+  <form
+    *ngIf="dir$ | async as dir"
+    [formGroup]="addEditProductForm"
+    class="h-100 w-100 px-2 row row-cols-2 align-content-start g-2"
+  >
+    <image-picker formControlName="image"></image-picker>
+
+    <mat-form-field [dir]="dir" appearance="fill">
+      <mat-label>{{ "description" | translate }}</mat-label>
+      <textarea formControlName="description" matInput rows="10"></textarea>
+      <mat-error
+        *ngIf="
+          addEditProductForm.get('description')?.touched &&
+          addEditProductForm.get('description')?.hasError('required')
+        "
+      >
+        <span>{{ "required" | translate }}</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field [dir]="dir" appearance="fill">
+      <mat-label>{{ "title" | translate }}</mat-label>
+      <input formControlName="title" matInput />
+      <mat-error
+        *ngIf="
+          addEditProductForm.get('title')?.touched &&
+          addEditProductForm.get('title')?.hasError('required')
+        "
+      >
+        <span>{{ "required" | translate }}</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field [dir]="dir" appearance="fill">
+      <mat-label>{{ "price" | translate }}</mat-label>
+      <input formControlName="price" matInput type="number" />
+      <mat-icon matSuffix>$</mat-icon>
+
+      <mat-error
+        *ngIf="
+          addEditProductForm.get('price')?.touched &&
+          addEditProductForm.get('price')?.errors
+        "
+      >
+        <span>{{ "required" | translate }}</span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field
+      *ngIf="allCategories$ | async as allCategories"
+      [dir]="dir"
+      appearance="fill"
+    >
+      <mat-label>{{ "category" | translate }}</mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let cat of allCategories" [value]="cat">
+          {{ cat | titlecase }}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="
+          addEditProductForm.get('category')?.touched &&
+          addEditProductForm.get('category')?.hasError('required')
+        "
+      >
+        <span>{{ "required" | translate }}</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field [dir]="dir" appearance="fill">
+      <mat-label>{{ "rate" | translate }}</mat-label>
+      <input formControlName="rate" matInput type="number" />
+      <mat-error
+        *ngIf="
+          addEditProductForm.get('rate')?.touched &&
+          addEditProductForm.get('rate')?.hasError('required')
+        "
+      >
+        <span>{{ "required" | translate }}</span>
+      </mat-error>
+      <mat-error
+        *ngIf="
+          addEditProductForm.get('rate')?.touched &&
+          addEditProductForm.get('rate')?.hasError('max')
+        "
+      >
+        <span>{{ "MaxRateIs5" | translate }}</span>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- <mat-form-field [dir]="dir" appearance="fill">
+      <mat-label>{{ "count" | translate }}</mat-label>
+      <input formControlName="count" matInput type="number" />
+      <mat-error
+        *ngIf="
+          addEditProductForm.get('count')?.touched &&
+          addEditProductForm.get('count')?.hasError('required')
+        "
+      >
+      </mat-error>
+    </mat-form-field> -->
+  </form>
+</app-dialog>

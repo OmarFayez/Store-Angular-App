@@ -3,6 +3,7 @@
     [dataSource]="adminProducts$ | async"
     (onDeleteProduct)="deleteProduct($event)"
     (onAddProduct)="addProduct()"
+    (onUpdateProduct)="updateProduct($event)"
   ></app-admin-dashboard-ui>
 
   <!-- <div (click)="addProduct()">Add Product</div> -->

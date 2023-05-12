@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { ProductsStoreService } from '../../data-access/products-store.service';
-import { Observable, switchMap, take, tap } from 'rxjs';
+import { Observable, of, switchMap, take, tap } from 'rxjs';
 import { Product } from '../../utils/product.model';
 import {
   animate,
@@ -11,6 +11,13 @@ import {
 } from '@angular/animations';
 import { ConfirmationDialogService } from 'src/app/shared/feature/confirmation-dialog';
 import { TranslateService } from '@ngx-translate/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AddEditProductComponent } from '../add-edit-product/add-edit-product.component';
+import {
+  ModalHeight,
+  ModalPercentageSize,
+} from 'src/app/shared/utils/enum/modal-size-enum';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -31,26 +38,61 @@ export class AdminDashboardComponent {
   constructor(
     private productsStoreService: ProductsStoreService,
     private confirmService: ConfirmationDialogService,
-    private readonly translateService: TranslateService
+    private readonly translateService: TranslateService,
+    private readonly dialog: MatDialog
   ) {}
+  private destroyRef = inject(DestroyRef);
+
   adminProducts$: Observable<Product[]> =
     this.productsStoreService.adminProducts$;
-  addProduct() {
-    const newProduct = {
-      id: 21,
-      title: 'Omaradada - Foldsack No. 1 Backpack, Fits 15 Laptops',
-      price: 109.95,
-      description:
-        'Youassssssssssrest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday',
-      category: "men's clothing",
-      image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
-      rating: {
-        rate: 3.9,
-        count: 120,
-      },
-    };
-    this.productsStoreService.addProduct(newProduct);
+
+  public addProduct = (): void => {
+    this.dialog
+      .open(AddEditProductComponent, {
+        width: ModalPercentageSize.X_LARGE,
+        height: ModalHeight.X_LARGE,
+        hasBackdrop: true,
+        disableClose: true,
+        closeOnNavigation: true,
+        restoreFocus: false,
+      })
+      .afterClosed()
+      .pipe(
+        switchMap((product) => {
+          if (!!product)
+            return this.productsStoreService.addProductFromApi(
+              product as Product
+            );
+          else return of();
+        }),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe();
+  };
+
+  public updateProduct(prod: Product): void {
+    this.dialog
+      .open(AddEditProductComponent, {
+        width: ModalPercentageSize.X_LARGE,
+        height: ModalHeight.X_LARGE,
+        hasBackdrop: true,
+        disableClose: true,
+        closeOnNavigation: true,
+        restoreFocus: false,
+        data: { prod },
+      })
+      .afterClosed()
+      .pipe(
+        switchMap((product) => {
+          return this.productsStoreService.updateProductFromApi(
+            product as Product
+          );
+        }),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe();
   }
+
   public deleteProduct(product: Product): void {
     this.confirmService
       .Confirm(
@@ -64,9 +106,12 @@ export class AdminDashboardComponent {
       )
       .pipe(
         take(1),
-        switchMap(() =>
-          this.productsStoreService.deleteProductFromApi(product.id)
-        )
+        takeUntilDestroyed(this.destroyRef),
+        switchMap((val) => {
+          if (val)
+            return this.productsStoreService.deleteProductFromApi(product.id);
+          else return of();
+        })
       )
       .subscribe();
   }

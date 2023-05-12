@@ -1,0 +1,61 @@
+<div
+  class="w-100 d-flex justify-content-center align-items-center border"
+  style="height: calc(100% - 22px)"
+>
+  <label
+    *ngIf="!image?.preview"
+    [matTooltip]="label"
+    class="d-flex justify-content-center align-items-center rounded-2 m-0 p-4 bg-gray-50 border cursor-pointer"
+    for="img-input"
+  >
+    <mat-icon class="text-center fs-2">add_photo_alternate</mat-icon>
+    <input
+      #input
+      id="img-input"
+      type="file"
+      hidden
+      (change)="onSelectFile($event, input?.files)"
+    />
+  </label>
+
+  <div *ngIf="!!image?.preview" class="w-auto h-auto rounded">
+    <img
+      [src]="image.preview"
+      width="245"
+      height="130"
+      loading="eager"
+      class="img-object-fit"
+    />
+
+    <div
+      *ngIf="showActions"
+      class="d-flex justify-content-center align-items-center px-0 mt-2"
+    >
+      <app-button
+        *ngIf="showDeleteBtn"
+        [matType]="ButtonTypes.miniFap"
+        [color]="ButtonColors.warn"
+        toolTip="delete"
+        icon="delete"
+        (clicked)="onResetImage()"
+      ></app-button>
+
+      <label
+        class="d-flex justify-content-center align-items-center rounded-pill mat-elevation-z3 p-1 cursor-pointer mx-2"
+        style="height: 40px; width: 40px"
+        matTooltip="edit"
+        matTooltipPosition="above"
+        for="img-input"
+      >
+        <mat-icon class="">edit</mat-icon>
+        <input
+          #input
+          id="img-input"
+          type="file"
+          hidden
+          (change)="onSelectFile($event, input?.files)"
+        />
+      </label>
+    </div>
+  </div>
+</div>

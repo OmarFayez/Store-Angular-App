@@ -7,7 +7,7 @@
       <mat-label>{{ "filter" | translate }}</mat-label>
       <input
         matInput
-        (keyup)="applyFilter($event)"
+        [formControl]="searchControl"
         [placeholder]="'ex' | translate"
         #input
       />
@@ -87,7 +87,7 @@
                 <span>{{ "delete" | translate }}</span>
               </button>
 
-              <button mat-menu-item>
+              <button mat-menu-item (click)="updateProduct(element)">
                 <mat-icon>update</mat-icon>
                 <span>{{ "update" | translate }}</span>
               </button>
@@ -128,7 +128,10 @@
                 element == expandedElement ? 'expanded' : 'collapsed'
               "
             >
-              {{ element.description }}
+              <div class="p-2">
+                <h6>{{ "description" | translate }}</h6>
+                {{ element.description }}
+              </div>
             </div>
           </td>
         </ng-container>

@@ -90,15 +90,63 @@ export class ProductsStoreService {
   public changeSelectedCategory(newCategory: string) {
     this.selectedCategory.next(newCategory);
   }
+  public addProductFromApi(product: Product) {
+    return this.http
+      .post<Product>('https://fakestoreapi.com/products', product)
+      .pipe(
+        tap(() => {
+          this.addProduct(product);
+          this.toasterService.success(
+            this.translateService.instant('createSuccess')
+          );
+        }),
+        catchError((err) => {
+          this.toasterService.error(
+            this.translateService.instant('createFailed')
+          );
+          return this.handleError(err);
+        })
+      );
+  }
 
-  public addProduct(product: Product) {
+  private addProduct(product: Product) {
     this.productsLength++;
     const newProduct = { ...product, id: this.productsLength };
     const adminProducts = [...this.adminProducts.getValue()];
-    adminProducts?.push(newProduct);
+    adminProducts?.unshift(newProduct);
     this.adminProducts.next(adminProducts);
     console.log(this.adminProducts.getValue());
   }
+
+  public updateProductFromApi(product: Product) {
+    return this.http
+      .put<Product>(`https://fakestoreapi.com/products/${product.id}`, product)
+      .pipe(
+        tap(() => {
+          this.updateProduct(product);
+          this.toasterService.success(
+            this.translateService.instant('updatedSuccess')
+          );
+        }),
+        catchError((err) => {
+          this.toasterService.error(
+            this.translateService.instant('updatedFailed')
+          );
+          return this.handleError(err);
+        })
+      );
+  }
+
+  private updateProduct(product: Product) {
+    let adminProducts = [...this.adminProducts.getValue()];
+    const ProductIndex = adminProducts.findIndex(
+      (oldProduct) => oldProduct.id === product.id
+    );
+    adminProducts[ProductIndex] = product;
+    adminProducts = [...adminProducts];
+    this.adminProducts.next(adminProducts);
+  }
+
   public deleteProductFromApi(id: number) {
     return this.http.delete(`https://fakestoreapi.com/products/${id}`).pipe(
       tap(() => {

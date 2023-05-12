@@ -39,6 +39,6 @@ export class UserProductsComponent {
         count: 120,
       },
     };
-    this.productsStoreService.addProduct(newProduct);
+    // this.productsStoreService.addProduct(newProduct);
   }
 }

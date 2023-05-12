@@ -1,7 +1,9 @@
 import {
+  AfterViewInit,
   Component,
   EventEmitter,
   Input,
+  OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
@@ -15,6 +17,8 @@ import {
 import { Product } from '../../utils/product.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 @Component({
   selector: 'app-admin-dashboard-ui',
   templateUrl: './admin-dashboard-ui.component.html',
@@ -30,11 +34,19 @@ import { MatPaginator } from '@angular/material/paginator';
     ]),
   ],
 })
-export class AdminDashboardUiComponent {
+export class AdminDashboardUiComponent implements OnInit, AfterViewInit {
+  ngOnInit(): void {
+    this.searchControl.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe((value) => {
+        this.dataSource.filter = value?.trim().toLowerCase();
+      });
+  }
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   @Output() onDeleteProduct = new EventEmitter<Product>();
   @Output() onAddProduct = new EventEmitter<void>();
+  @Output() onUpdateProduct = new EventEmitter<Product>();
 
   @Input() set dataSource(data: any) {
     this._dataSource = new MatTableDataSource(data);
@@ -45,6 +57,8 @@ export class AdminDashboardUiComponent {
   }
 
   private _dataSource = new MatTableDataSource([]);
+
+  searchControl = new FormControl('');
 
   ngAfterViewInit() {
     this._dataSource.paginator = this.paginator;
@@ -62,15 +76,14 @@ export class AdminDashboardUiComponent {
   ];
   expandedElement!: Product | null;
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
   public deleteProduct(product: Product) {
     this.onDeleteProduct.emit(product);
   }
   public addProduct() {
     this.onAddProduct.emit();
+  }
+
+  public updateProduct(product: Product) {
+    this.onUpdateProduct.emit(product);
   }
 }

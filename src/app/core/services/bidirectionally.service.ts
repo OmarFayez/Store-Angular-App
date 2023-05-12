@@ -1,21 +1,22 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
-import { Injectable, OnDestroy } from '@angular/core';
+import { DestroyRef, Injectable, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { map, takeUntil, tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
-export class BidirectionallyService implements OnDestroy {
+export class BidirectionallyService {
   public constructor(public readonly dir: Directionality) {
     this.dir.change
       .pipe(
-        takeUntil(this._destroyAll$),
+        takeUntilDestroyed(this.destroyRef),
         tap((direction: Direction) => this._changeDirection.next(direction))
       )
       .subscribe();
   }
-  private readonly _destroyAll$ = new Subject<boolean>();
+  private destroyRef = inject(DestroyRef);
 
   private readonly _changeDirection = new BehaviorSubject<Direction>('rtl');
 
@@ -44,10 +45,5 @@ export class BidirectionallyService implements OnDestroy {
         //TODO: Hide splash screen here
       }, 1000);
     }
-  }
-
-  public ngOnDestroy(): void {
-    this._destroyAll$.next(true);
-    this._destroyAll$.complete();
   }
 }
