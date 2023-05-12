@@ -1,5 +1,15 @@
 {
   "loginSuccess": "Logon success",
-  "loginFailed": "Logon failed, Plz check user name or password.."
+  "loginFailed": "Logon failed, Plz check user name or password..",
+  "title":"Title",
+  "image":"Image",
+  "price":"price",
+  "rating":"Rating",
+  "category":"Category",
+  "actions":"Actions",
+  "description":"Description",
+  "addProduct":"Add Product",
+  "delete":"Delete",
+  "update":"Update"
   
 }

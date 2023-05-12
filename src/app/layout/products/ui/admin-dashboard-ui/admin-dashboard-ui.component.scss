@@ -1,3 +1,7 @@
+.example-container {
+  height: 400px;
+  overflow: auto;
+}
 table {
     width: 100%;
   }
@@ -45,3 +49,24 @@ table {
   .example-element-description-attribution {
     opacity: 0.5;
   }
+  
+
+  .img-container{
+    img{
+      transition: all .5s;
+    }
+    &:hover img{
+      transform: scale(1.2);
+    }
+  }
+
+::ng-deep{
+  #action-area{
+    .mat-mdc-form-field-bottom-align::before{
+      display: none !important;
+    }
+    .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+      background-color: white;}
+  }
+ 
+}
