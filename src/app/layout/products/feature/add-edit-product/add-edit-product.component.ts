@@ -1,4 +1,3 @@
-import { Direction } from '@angular/cdk/bidi';
 import { Component, DestroyRef, Inject, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
@@ -8,14 +7,11 @@ import {
 } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
-import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { filter, take, tap } from 'rxjs/operators';
 import { BidirectionallyService } from 'src/app/core/services/bidirectionally.service';
 import { Product } from '../../utils/product.model';
 import { IAddEditProductFormGroup } from '../../utils/add-edit-product-form-group.interface';
 import { ProductsStoreService } from '../../data-access/products-store.service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-add-edit-product',
@@ -82,7 +78,6 @@ export class AddEditProductComponent implements OnInit {
 
   public ngOnInit(): void {
     if (!!this.data?.prod) {
-      console.log(this.data?.prod);
       this.addEditProductForm.patchValue({
         ...this.data?.prod,
         rate: this.data?.prod.rating.rate,
@@ -91,12 +86,12 @@ export class AddEditProductComponent implements OnInit {
     }
   }
 
-  public onSubmit = (): void => {
+  public onSubmit(): void {
     this.submitLoading = true;
-    !!this.data?.prod ? this._updateProduct() : this._createNewProduct();
-  };
+    !!this.data?.prod ? this.updateProduct() : this.createNewProduct();
+  }
 
-  private _createNewProduct = (): void => {
+  private createNewProduct(): void {
     const product = {
       ...this.addEditProductForm?.value,
       rating: {
@@ -106,9 +101,9 @@ export class AddEditProductComponent implements OnInit {
     };
     this.submitLoading = false;
     this.cancelHandler(product);
-  };
+  }
 
-  private _updateProduct = (): void => {
+  private updateProduct(): void {
     const product = {
       id: this.data?.prod?.id,
       ...this.addEditProductForm?.value,
@@ -119,7 +114,7 @@ export class AddEditProductComponent implements OnInit {
     };
     this.submitLoading = false;
     this.cancelHandler(product);
-  };
+  }
 
   public cancelHandler = (res?: unknown): void =>
     this._dialogRef.close(res ?? null);

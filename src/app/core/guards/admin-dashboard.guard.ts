@@ -10,19 +10,8 @@ export const adminDashboardGuard: CanActivateFn = (route, state) => {
   return authService.currentUser.pipe(
     map((user) => {
       const isAdmin: boolean = !!user && user?.role === 'admin';
-
       if (!isAdmin) router.navigateByUrl('/access-denied');
-
       return isAdmin;
-
-      // debugger;
-      // const isAuthenticated: boolean = !!user;
-      // if (isAuthenticated && user?.role === 'admin') {
-      //   return true;
-      // } else {
-      //   router.navigate(['/']);
-      //   return false;
-      // }
     })
   );
 };

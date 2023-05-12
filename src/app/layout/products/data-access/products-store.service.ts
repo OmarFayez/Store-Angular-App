@@ -33,14 +33,18 @@ export class ProductsStoreService {
         takeUntilDestroyed(),
         finalize(() => {
           this.dataLoaded.next(true);
-        })
+        }),
+        catchError((err) => this.handleError(err))
       )
       .subscribe();
     this.mergedProductsWithCategories.pipe(takeUntilDestroyed()).subscribe();
   }
   private categories$: Observable<string[]> = this.http
     .get<string[]>('https://fakestoreapi.com/products/categories')
-    .pipe(tap((categories) => this.allCategories.next(categories)));
+    .pipe(
+      tap((categories) => this.allCategories.next(categories)),
+      catchError((err) => this.handleError(err))
+    );
   private allCategories = new BehaviorSubject<string[]>([]);
   public allCategories$ = this.allCategories.asObservable();
 
@@ -50,7 +54,8 @@ export class ProductsStoreService {
       tap((products) => {
         this.adminProducts.next(products);
         this.productsLength = products.length;
-      })
+      }),
+      catchError((err) => this.handleError(err))
     );
 
   private dataLoaded = new BehaviorSubject<boolean>(false);
@@ -84,7 +89,8 @@ export class ProductsStoreService {
     }),
     tap((products) => {
       this.filteredProducts.next(products);
-    })
+    }),
+    catchError((err) => this.handleError(err))
   );
 
   public changeSelectedCategory(newCategory: string) {
@@ -115,7 +121,6 @@ export class ProductsStoreService {
     const adminProducts = [...this.adminProducts.getValue()];
     adminProducts?.unshift(newProduct);
     this.adminProducts.next(adminProducts);
-    console.log(this.adminProducts.getValue());
   }
 
   public updateProductFromApi(product: Product) {
@@ -176,7 +181,6 @@ export class ProductsStoreService {
     // instead of just logging it to the console
     let errorMessage: string;
     if (err.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
       errorMessage = `An error occurred: ${err.error.message}`;
     } else {
       // The backend returned an unsuccessful response code.
@@ -184,6 +188,6 @@ export class ProductsStoreService {
       errorMessage = `Backend returned code ${err.status}: ${err.body.error}`;
     }
     console.error(err);
-    return throwError(errorMessage);
+    return throwError(() => errorMessage);
   }
 }

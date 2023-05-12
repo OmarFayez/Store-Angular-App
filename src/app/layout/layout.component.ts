@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../users/data-access/auth.service';
+import { ProductsStoreService } from './products/data-access/products-store.service';
 
 @Component({
   selector: 'app-layout',
@@ -7,5 +7,6 @@ import { AuthService } from '../users/data-access/auth.service';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent {
-  constructor() {}
+  constructor(private productsStoreService: ProductsStoreService) {}
+  public dataLoaded$ = this.productsStoreService.dataLoaded$;
 }

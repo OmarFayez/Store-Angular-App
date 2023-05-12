@@ -146,8 +146,6 @@ export class ImagePickerComponent implements OnInit {
 
       reader.onload = (_) => {
         const { result } = reader;
-        console.log('result', result);
-
         this.image = { file: file, preview: result };
       };
     } else this.image = { file: undefined, preview: file };

@@ -25,7 +25,6 @@ export class LoginComponent {
       .pipe(
         takeUntilDestroyed(this.destroyRef),
         tap((result: LoginResult) => {
-          console.log(result);
           this.snackBarService.snackbar(
             result?.message,
             result?.status === 200 ? 'success' : 'error'
