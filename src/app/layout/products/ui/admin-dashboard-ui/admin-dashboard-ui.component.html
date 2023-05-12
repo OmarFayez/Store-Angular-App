@@ -20,6 +20,7 @@
   <mat-card>
     <div class="example-container mb-3">
       <table
+        *ngIf="dataSource.data.length > 0; else noData"
         mat-table
         [dataSource]="dataSource"
         multiTemplateDataRows
@@ -165,3 +166,7 @@
     ></mat-paginator>
   </mat-card>
 </div>
+
+<ng-template #noData>
+  <no-data [text]="'noData' | translate"> </no-data>
+</ng-template>

@@ -34,6 +34,6 @@
   "updatedSuccess": "Item updated successfully.",
   "updatedFailed": "Update Failed.",
   "createSuccess": "Item create successfully.",
-  "createFailed": "Creation Failed."
-  
+  "createFailed": "Creation Failed.",
+  "noData": "There is no data to show yet.."
 }

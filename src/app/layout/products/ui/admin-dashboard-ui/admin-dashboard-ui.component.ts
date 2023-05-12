@@ -35,13 +35,6 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
   ],
 })
 export class AdminDashboardUiComponent implements OnInit, AfterViewInit {
-  ngOnInit(): void {
-    this.searchControl.valueChanges
-      .pipe(debounceTime(500), distinctUntilChanged())
-      .subscribe((value) => {
-        this.dataSource.filter = value?.trim().toLowerCase();
-      });
-  }
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   @Output() onDeleteProduct = new EventEmitter<Product>();
@@ -59,6 +52,14 @@ export class AdminDashboardUiComponent implements OnInit, AfterViewInit {
   private _dataSource = new MatTableDataSource([]);
 
   searchControl = new FormControl('');
+
+  ngOnInit(): void {
+    this.searchControl.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe((value) => {
+        this.dataSource.filter = value?.trim().toLowerCase();
+      });
+  }
 
   ngAfterViewInit() {
     this._dataSource.paginator = this.paginator;

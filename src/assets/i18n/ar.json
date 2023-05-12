@@ -34,6 +34,7 @@
   "updatedSuccess": "تم تحديث بنجاح.",
   "updatedFailed": "خطأ اثناء التحديث.",
   "createSuccess": "تم الأنشاء بنجاح.",
-  "createFailed": "خطأ اثناء الأنشاء."
+  "createFailed": "خطأ اثناء الأنشاء.",
+  "noData": "لا يوجد اي بيانات للعرض فى الوقت الحالي.."
 
 }
