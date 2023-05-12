@@ -1,0 +1,57 @@
+<div
+  class="d-flex flex-column justify-content-between align-items-stretch position-relative overflow-hidden"
+>
+  <div class="d-flex justify-content-end align-items-center">
+    <button class="" mat-icon-button (click)="dialogRef.close(false)">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Contetnt -->
+  <div
+    class="d-flex flex-row flex-auto align-items-center aign-items-sm-start p-3 py-2"
+  >
+    <button
+      mat-mini-fab
+      color="warn"
+      aria-label="Example icon button with a menu icon"
+    >
+      <mat-icon>report_gmailerrorred</mat-icon>
+    </button>
+
+    <div class="flex flex-column items-start text-start mx-3">
+      <div
+        class="sm:text-lg text-sm sm:leading-6 leading-3 sm:font-medium font-normal"
+      >
+        <span [innerText]="data.title"></span>
+      </div>
+      <div
+        class="text-secondary sm:text-base text-xs sm:font-normal font-light"
+      >
+        <span [innerText]="data.message"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div
+    class="flex align-items-center justify-content-center justify-content-sm-start px-2 py-2 gap-3 bg-gray-50"
+  >
+    <button
+      class="w-auto"
+      (click)="dialogRef.close(true)"
+      mat-flat-button
+      color="warn"
+    >
+      {{ data.ok }}
+    </button>
+
+    <button
+      (click)="dialogRef.close(false)"
+      class="w-auto mx-3"
+      mat-stroked-button
+    >
+      {{ data.close }}
+    </button>
+  </div>
+</div>

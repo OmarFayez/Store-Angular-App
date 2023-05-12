@@ -4,11 +4,11 @@
     id="action-area"
   >
     <mat-form-field>
-      <mat-label>Filter</mat-label>
+      <mat-label>{{ "filter" | translate }}</mat-label>
       <input
         matInput
         (keyup)="applyFilter($event)"
-        placeholder="Ex. ium"
+        [placeholder]="'ex' | translate"
         #input
       />
     </mat-form-field>
@@ -82,7 +82,7 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="deleteProduct(element.id)">
+              <button mat-menu-item (click)="deleteProduct(element)">
                 <mat-icon>delete</mat-icon>
                 <span>{{ "delete" | translate }}</span>
               </button>

@@ -5,19 +5,27 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   BehaviorSubject,
   Observable,
+  catchError,
   combineLatest,
   finalize,
   forkJoin,
   map,
   tap,
+  throwError,
 } from 'rxjs';
 import { Product } from '../utils/product.model';
+import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsStoreService {
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private toasterService: ToastrService,
+    private readonly translateService: TranslateService
+  ) {
     // this.categories$.pipe(takeUntilDestroyed()).subscribe();
     // this.products$.pipe(takeUntilDestroyed()).subscribe();
     forkJoin([this.categories$, this.products$])
@@ -91,12 +99,43 @@ export class ProductsStoreService {
     this.adminProducts.next(adminProducts);
     console.log(this.adminProducts.getValue());
   }
-
-  public deleteProduct(id: number) {
+  public deleteProductFromApi(id: number) {
+    return this.http.delete(`https://fakestoreapi.com/products/${id}`).pipe(
+      tap(() => {
+        this.deleteProduct(id);
+        this.toasterService.success(
+          this.translateService.instant('deleteSuccess')
+        );
+      }),
+      catchError((err) => {
+        this.toasterService.error(
+          this.translateService.instant('deleteFailed')
+        );
+        return this.handleError(err);
+      })
+    );
+  }
+  private deleteProduct(id: number) {
     const adminProducts = this.adminProducts.getValue();
     const newAdminProducts = adminProducts?.filter(
       (product) => product.id !== id
     );
     this.adminProducts.next(newAdminProducts);
+  }
+
+  private handleError(err: any) {
+    // in a real world app, we may send the server to some remote logging infrastructure
+    // instead of just logging it to the console
+    let errorMessage: string;
+    if (err.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      errorMessage = `An error occurred: ${err.error.message}`;
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      errorMessage = `Backend returned code ${err.status}: ${err.body.error}`;
+    }
+    console.error(err);
+    return throwError(errorMessage);
   }
 }

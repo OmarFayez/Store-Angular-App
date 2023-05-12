@@ -33,7 +33,7 @@ import { MatPaginator } from '@angular/material/paginator';
 export class AdminDashboardUiComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  @Output() onDeleteProduct = new EventEmitter<number>();
+  @Output() onDeleteProduct = new EventEmitter<Product>();
   @Output() onAddProduct = new EventEmitter<void>();
 
   @Input() set dataSource(data: any) {
@@ -67,8 +67,8 @@ export class AdminDashboardUiComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  public deleteProduct(id: number) {
-    this.onDeleteProduct.emit(id);
+  public deleteProduct(product: Product) {
+    this.onDeleteProduct.emit(product);
   }
   public addProduct() {
     this.onAddProduct.emit();

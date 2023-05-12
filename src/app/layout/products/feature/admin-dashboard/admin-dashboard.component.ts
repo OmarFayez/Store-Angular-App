@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductsStoreService } from '../../data-access/products-store.service';
-import { Observable } from 'rxjs';
+import { Observable, switchMap, take, tap } from 'rxjs';
 import { Product } from '../../utils/product.model';
 import {
   animate,
@@ -9,6 +9,8 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { ConfirmationDialogService } from 'src/app/shared/feature/confirmation-dialog';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -26,7 +28,11 @@ import {
   ],
 })
 export class AdminDashboardComponent {
-  constructor(private productsStoreService: ProductsStoreService) {}
+  constructor(
+    private productsStoreService: ProductsStoreService,
+    private confirmService: ConfirmationDialogService,
+    private readonly translateService: TranslateService
+  ) {}
   adminProducts$: Observable<Product[]> =
     this.productsStoreService.adminProducts$;
   addProduct() {
@@ -45,8 +51,26 @@ export class AdminDashboardComponent {
     };
     this.productsStoreService.addProduct(newProduct);
   }
-
-  deleteProduct(id: number) {
-    this.productsStoreService.deleteProduct(id);
+  public deleteProduct(product: Product): void {
+    this.confirmService
+      .Confirm(
+        `${
+          this.translateService.instant('from') +
+          ' ' +
+          this.translateService.instant('delete')
+        } (${product.title.split('').slice(0, 40).join('')}...) ?`,
+        this.translateService.instant('sure'),
+        this.translateService.instant('delete')
+      )
+      .pipe(
+        take(1),
+        switchMap(() =>
+          this.productsStoreService.deleteProductFromApi(product.id)
+        )
+      )
+      .subscribe();
   }
+  // deleteProduct(id: number) {
+  //   this.productsStoreService.deleteProduct(id);
+  // }
 }

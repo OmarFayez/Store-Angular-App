@@ -1,6 +1,14 @@
 {
+  "storeApp":"Store App",
+  "welcome":"Welcome",
+  "login":"Login",
+  "userName":"User Name",
+  "required":"Required",
+  "enterYourPassword":"Enter Your Password",
+  "close":"Close",
   "loginSuccess": "Logon success",
   "loginFailed": "Logon failed, Plz check user name or password..",
+  "logout":"Logout",
   "title":"Title",
   "image":"Image",
   "price":"Price",
@@ -9,7 +17,17 @@
   "actions":"Actions",
   "description":"Description",
   "addProduct":"Add Product",
+  "filter":"Filter",
+  "ex":"Ex. ium",
   "delete":"Delete",
-  "update":"Update"
+  "update":"Update",
+  "sure": "Are you sure ?",
+  "from":"from",
+  "deleteSuccess": "Item deleted successfully.",
+  "deleteFailed": "Delete Failed.",
+  "updatedSuccess": "Item updated successfully.",
+  "updatedFailed": "Update Failed.",
+  "createSuccess": "Item create successfully.",
+  "createFailed": "Creation Failed."
   
 }

@@ -3,7 +3,7 @@
     <div
       class="d-flex justify-content-between align-items-center w-100 container-fluid"
     >
-      <span>Store App</span>
+      <span class="fs-4 fw-bold">{{ "storeApp" | translate }}</span>
 
       <div class="d-flex align-items-center">
         <app-language class="mx-2"></app-language>
@@ -13,7 +13,9 @@
             [matMenuTriggerFor]="menu"
             class="md:text-base text-xs font-medium"
           >
-            <span> {{ "welcome" | translate }} {{ user?.userName }} </span>
+            <span class="fs-6">
+              {{ "welcome" | translate }} {{ user?.userName }}
+            </span>
             <mat-icon>keyboard_arrow_down</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
