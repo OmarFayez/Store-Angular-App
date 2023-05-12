@@ -1,11 +1,28 @@
+::-webkit-scrollbar
+{
+    width: 7px;
+}
+::-webkit-scrollbar-thumb
+{
+    background-color:#3f51b5;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover
+{
+    background-color: #5d6dc3;
+}
+
 .cursor-pointer{
     cursor: pointer;
 }
 .max-w-24{
     max-width: 24rem;
 }
+.img-object-fit{
+    object-fit: cover;
+}
 
-// .layout-content{
-//     margin-top: 65px;
-//     height: calc(100% - 65px);
-// }
+.z-index-100{
+    z-index: 100 !important;
+}
+

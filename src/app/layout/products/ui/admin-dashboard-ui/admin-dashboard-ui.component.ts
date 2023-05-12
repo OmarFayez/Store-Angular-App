@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import {
   animate,
   state,
@@ -8,6 +14,7 @@ import {
 } from '@angular/animations';
 import { Product } from '../../utils/product.model';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'app-admin-dashboard-ui',
   templateUrl: './admin-dashboard-ui.component.html',
@@ -24,16 +31,25 @@ import { MatTableDataSource } from '@angular/material/table';
   ],
 })
 export class AdminDashboardUiComponent {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   @Output() onDeleteProduct = new EventEmitter<number>();
   @Output() onAddProduct = new EventEmitter<void>();
 
   @Input() set dataSource(data: any) {
     this._dataSource = new MatTableDataSource(data);
+    this._dataSource.paginator = this.paginator;
   }
   get dataSource() {
     return this._dataSource;
   }
+
   private _dataSource = new MatTableDataSource([]);
+
+  ngAfterViewInit() {
+    this._dataSource.paginator = this.paginator;
+  }
+
   columnsToDisplay = [];
   columnsToDisplayWithExpand = [
     'expand',
