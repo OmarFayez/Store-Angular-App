@@ -1,21 +1,28 @@
-<div class="layout-content">
-  <p>user-products works!</p>
-  <p>data Loaded {{ dataLoaded$ | async }}</p>
-  <div>
-    <div (click)="selectCategory('all')">all</div>
-    <div
-      *ngFor="let category of allCategories$ | async"
-      (click)="selectCategory(category)"
+<div class="container-fluid mt-4 px-3 mb-3 overflow-hidden">
+  <div class="mb-3">
+    <button
+      class="mx-2"
+      mat-raised-button
+      (click)="selectCategory('all')"
+      [color]="selectedCategory === 'all' ? 'primary' : ''"
     >
-      {{ category }}
-    </div>
+      All
+    </button>
+    <button
+      class="m-2"
+      *ngFor="let category of allCategories$ | async"
+      mat-raised-button
+      (click)="selectCategory(category)"
+      [color]="selectedCategory === category ? 'primary' : ''"
+    >
+      {{ category | titlecase }}
+    </button>
   </div>
-
-  <div>
-    <div class="px-2" *ngFor="let item of filteredProducts$ | async">
-      {{ item.title }}
-    </div>
+  <div class="row g-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+    <app-product-list-item
+      *ngFor="let product of filteredProducts$ | async"
+      [@animate]="{ value: '*', params: { x: '-180px', delay: '200ms' } }"
+      [product]="product"
+    ></app-product-list-item>
   </div>
 </div>
-
-<div (click)="addProduct()">Add Product</div>

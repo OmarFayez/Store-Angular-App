@@ -27,6 +27,9 @@
 .img-object-fit{
     object-fit: cover;
 }
+.img-object-fit-contain{
+    object-fit: contain;
+}
 
 .z-index-100{
     z-index: 100 !important;
@@ -34,4 +37,13 @@
 
 .bg-gray-50{
     background-color: rgb(249 250 251)
+}
+.text-indigo{
+    color:#3f51b5
+}
+.line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
 }
