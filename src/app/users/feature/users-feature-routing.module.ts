@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    title: 'login',
+    title: 'Store | Login',
     canActivate: [layoutGuard],
   },
 ];

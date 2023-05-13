@@ -1,27 +1,81 @@
-# StoreAngularApp
+# Store Angular App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
+- [Overview](#Overview)
+  - [About](#About)
+  - [Links](#links)
+- [Features](#Features)
+- [Technologies & Packages](#Technologies&Packages)
+- [Clone app & Setup](#Cloneapp&Setup)
+- [Built](#Build)
 
-## Development server
+## Overview
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### About
 
-## Code scaffolding
+- A web application to show products for user and the admin can manage this products.
+- You can add , update and delete products from admin dashboard and it will reflect at user view.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Links
+
+- Live Site URL: [Store Angular App](https://omarfayez.github.io/Store-Angular-App/)
+- Used Api For Products : [Fake Store Api](https://fakestoreapi.com/)
+
+## Features
+
+- Login Display : Basic login form and use static login users for the 2 roles:
+
+  - User => `Username : user , Password : user `
+  - Admin => `Username : admin , Password : admin `
+
+- Security should be applied to the page to restrict only logged in users who can access it.
+  This display will appear depending on the user role as follows:
+
+  - #Admin View
+
+    - Should display all products in a table (Bonus: use pagination with the data)
+    - Can add product
+    - Can update product
+    - Can delete product
+
+  - #User View
+
+    - Show the different categories and under each category show the available products and filters section. (Bonus: use loading while getting the data - changing the products list with animation)
+    - For each product card user should see the full data
+
+## Technologies & Packages
+
+Project is created with:
+
+- Angular 16
+  - Standalone Components
+  - Strong Typed Forms
+  - TakeUntilDestroyed
+  - Streamlined Page Title accessibility
+  - Ng Optimized Image
+- Typescript
+- RxJS
+- Lightweight State Mangement (BehaviourSubject)
+- Feature & Ui Components
+- ngx-translation
+- Shared Components
+- Angular Material
+- HTML
+- SCSS
+- Bootstrap 5
+- ngx-progressbar
+- ngx-toastr
+
+## Clone app & Setup
+
+git clone `https://github.com/OmarFayez/Store-Angular-App.git`
+
+```pwsh
+cd ./Store-Angular-App
+npm install
+npm start
+Open your browser on http://localhost:4200/
+```
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/store-app` directory.

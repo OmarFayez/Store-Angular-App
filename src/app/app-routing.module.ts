@@ -21,6 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'access-denied',
+    title: 'Store | Unauthorized',
     loadComponent: () =>
       import('./core/pages/access-denied/access-denied.component').then(
         (mod) => mod.AccessDeniedComponent
@@ -28,6 +29,7 @@ const routes: Routes = [
   },
   {
     path: 'not-found',
+    title: 'Store | Not Found',
     loadComponent: () =>
       import('./core/pages/not-found/not-found.component').then(
         (mod) => mod.NotFoundComponent
