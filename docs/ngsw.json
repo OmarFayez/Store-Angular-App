@@ -1,0 +1,117 @@
+{
+  "configVersion": 1,
+  "timestamp": 1683964540285,
+  "index": "/Store-Angular-App/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/Store-Angular-App/159.f34e9fdbd24fdd0b.js",
+        "/Store-Angular-App/175.7993b8ac6e4cf4dc.js",
+        "/Store-Angular-App/227.3d05f2195c689ba5.js",
+        "/Store-Angular-App/680.87533f245edf4384.js",
+        "/Store-Angular-App/968.0a81f1f10b99590e.js",
+        "/Store-Angular-App/favicon.ico",
+        "/Store-Angular-App/index.html",
+        "/Store-Angular-App/main.1d9434d23134dc53.js",
+        "/Store-Angular-App/manifest.webmanifest",
+        "/Store-Angular-App/polyfills.777f8af7dd7fb7a7.js",
+        "/Store-Angular-App/runtime.04ce7d5f34405120.js",
+        "/Store-Angular-App/styles.43936bb0011b0b57.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "api",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [],
+      "patterns": [
+        "https:\\/\\/fakestoreapi\\.com\\/.*"
+      ]
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/Store-Angular-App/assets/i18n/ar.json",
+        "/Store-Angular-App/assets/i18n/en.json",
+        "/Store-Angular-App/assets/icons/icon-128x128.png",
+        "/Store-Angular-App/assets/icons/icon-144x144.png",
+        "/Store-Angular-App/assets/icons/icon-152x152.png",
+        "/Store-Angular-App/assets/icons/icon-192x192.png",
+        "/Store-Angular-App/assets/icons/icon-256x256.png",
+        "/Store-Angular-App/assets/icons/icon-384x384.png",
+        "/Store-Angular-App/assets/icons/icon-512x512.png",
+        "/Store-Angular-App/assets/icons/icon-72x72.png",
+        "/Store-Angular-App/assets/icons/icon-96x96.png",
+        "/Store-Angular-App/assets/images/error-404.webp",
+        "/Store-Angular-App/assets/images/flags/ar.svg",
+        "/Store-Angular-App/assets/images/flags/en.svg",
+        "/Store-Angular-App/assets/images/unauthorized.webp"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/Store-Angular-App/159.f34e9fdbd24fdd0b.js": "0e30e6a84c3565733930729ebf5f0c1fcf97a30e",
+    "/Store-Angular-App/175.7993b8ac6e4cf4dc.js": "00452651289ff8eb1260519f17d69d3f5bc6a971",
+    "/Store-Angular-App/227.3d05f2195c689ba5.js": "1453f731e558fd403dd4772247d5fc353ccce624",
+    "/Store-Angular-App/680.87533f245edf4384.js": "c0cd034fe58e5ae9c163879a82647a1f5eacf15f",
+    "/Store-Angular-App/968.0a81f1f10b99590e.js": "6c21e652e32b807a2d7a48a4f95ff5a2a749e5ab",
+    "/Store-Angular-App/assets/i18n/ar.json": "ac619da013d64246fdeedbc32276e50463239718",
+    "/Store-Angular-App/assets/i18n/en.json": "8eb7d92cac561f3ff1efb5809492935c3b2e429d",
+    "/Store-Angular-App/assets/icons/icon-128x128.png": "5f1964fa634517912b0011cab3bdb56fd7937456",
+    "/Store-Angular-App/assets/icons/icon-144x144.png": "5f1964fa634517912b0011cab3bdb56fd7937456",
+    "/Store-Angular-App/assets/icons/icon-152x152.png": "5f1964fa634517912b0011cab3bdb56fd7937456",
+    "/Store-Angular-App/assets/icons/icon-192x192.png": "5f1964fa634517912b0011cab3bdb56fd7937456",
+    "/Store-Angular-App/assets/icons/icon-256x256.png": "af32f9dab932653314ef743bc4b560c6dff379f3",
+    "/Store-Angular-App/assets/icons/icon-384x384.png": "71d8f1710c57138ef0978822287cedd8daaa99a4",
+    "/Store-Angular-App/assets/icons/icon-512x512.png": "348ef7ffb606b7a5d9737f6ef6c300dfddd1d9d8",
+    "/Store-Angular-App/assets/icons/icon-72x72.png": "5f1964fa634517912b0011cab3bdb56fd7937456",
+    "/Store-Angular-App/assets/icons/icon-96x96.png": "5f1964fa634517912b0011cab3bdb56fd7937456",
+    "/Store-Angular-App/assets/images/error-404.webp": "8038766dfe49c2e1f0a19a808ebce09afa9ba258",
+    "/Store-Angular-App/assets/images/flags/ar.svg": "842e3018afe7c6e331ab6db1b4dbb9e59c74783e",
+    "/Store-Angular-App/assets/images/flags/en.svg": "d3d3892afee013c89bc0e96604f8a3ce237c62b6",
+    "/Store-Angular-App/assets/images/unauthorized.webp": "59b0e4ef2daffe28cd18cd062e142d04d8dab9d6",
+    "/Store-Angular-App/favicon.ico": "04c278dba3e54393c4c980f7fd4dcd43796ef813",
+    "/Store-Angular-App/index.html": "62a9eb3950e9e59a13bd88b2da866ec56ae46a5b",
+    "/Store-Angular-App/main.1d9434d23134dc53.js": "0791a58319231d928157c1304e421e2d52d1ef28",
+    "/Store-Angular-App/manifest.webmanifest": "df9fdce1abbec9c56e7e42f32c687aad6c304886",
+    "/Store-Angular-App/polyfills.777f8af7dd7fb7a7.js": "892dfe77129268ad3556ff1bc0fb6ce894a7c081",
+    "/Store-Angular-App/runtime.04ce7d5f34405120.js": "d31eba2a952f3f2024a4d1909e903b37b51b4972",
+    "/Store-Angular-App/styles.43936bb0011b0b57.css": "670b30401f402e9cd1fa8ee1096de15d9740200e"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}

@@ -54,6 +54,7 @@ Project is created with:
   - Ng Optimized Image
 - Typescript
 - RxJS
+- Service Worker
 - Lightweight State Mangement (BehaviourSubject)
 - Feature & Ui Components
 - ngx-translation
@@ -78,4 +79,4 @@ Open your browser on http://localhost:4200/
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/store-app` directory.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/store-angular-app` directory.
