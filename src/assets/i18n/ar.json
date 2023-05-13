@@ -35,6 +35,14 @@
   "updatedFailed": "خطأ اثناء التحديث.",
   "createSuccess": "تم الأنشاء بنجاح.",
   "createFailed": "خطأ اثناء الأنشاء.",
-  "noData": "لا يوجد اي بيانات للعرض فى الوقت الحالي.."
+  "noData": "لا يوجد اي بيانات للعرض فى الوقت الحالي..",
+  "paginator": {
+    "itemsPerPageLabel": "العناصر لكل صفحة:",
+    "nextPageLabel": "الصفحة التالية",
+    "previousPageLabel": "الصفحة السابقة",
+    "firstPageLabel": "الصفحة الأولى",
+    "lastPageLabel": "الصفحة الأخيرة",
+    "rangeLabel": "من"
+  }
 
 }

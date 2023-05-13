@@ -8,6 +8,8 @@ import { CoreModule } from './core/core.module';
 import { HeaderComponent } from './shared/feature/header/header.component';
 import { ErrorInterceptorService } from './core/services/error-interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { CustomPaginatorIntl } from './core/modules/custom-paginator';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +27,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
       useClass: ErrorInterceptorService,
       multi: true,
     },
+    { provide: MatPaginatorIntl, useClass: CustomPaginatorIntl },
   ],
   bootstrap: [AppComponent],
 })

@@ -10,6 +10,7 @@ import {
   finalize,
   forkJoin,
   map,
+  retry,
   tap,
   throwError,
 } from 'rxjs';
@@ -43,6 +44,7 @@ export class ProductsStoreService {
     .get<string[]>('https://fakestoreapi.com/products/categories')
     .pipe(
       tap((categories) => this.allCategories.next(categories)),
+      retry(2),
       catchError((err) => this.handleError(err))
     );
   private allCategories = new BehaviorSubject<string[]>([]);
@@ -55,6 +57,7 @@ export class ProductsStoreService {
         this.adminProducts.next(products);
         this.productsLength = products.length;
       }),
+      retry(2),
       catchError((err) => this.handleError(err))
     );
 
