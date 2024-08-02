@@ -13,7 +13,7 @@
 ### About
 
 - A web application to show products for user and the admin can manage this products.
-- You can add , update and delete products from admin dashboard and it will reflect at user view.
+- You can add , update and delete products from admin dashboard and it will reflect at user view in same session.
 
 ### Links
 
@@ -32,15 +32,16 @@
 
   - #Admin View
 
-    - Should display all products in a table (Bonus: use pagination with the data)
-    - Can add product
-    - Can update product
-    - Can delete product
+    - Should display all products in a table with pagination.
+    - Can add product.
+    - Can update product.
+    - Can delete product.
 
   - #User View
 
-    - Show the different categories and under each category show the available products and filters section. (Bonus: use loading while getting the data - changing the products list with animation)
-    - For each product card user should see the full data
+    - Show the different categories and under each category show the available products and filters section.
+    - For each product card user should see the full data.
+    - Use loading while getting the data and changing the products list with animation.
 
 ## Technologies & Packages
 
